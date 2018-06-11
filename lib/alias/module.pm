@@ -40,7 +40,8 @@ is equivalent to:
  }
  use Package::Alias 'Your::Alias::Name' => 'Some::Real::Module::Name';
 
-It is useful if you want to let users access a module's functionality under a
+except that this module does not use L<Package::Alias> and is simpler. It is
+useful if you want to let users access a module's functionality under a
 different (usually shorter) name.
 
 
