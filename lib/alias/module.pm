@@ -6,12 +6,15 @@ package alias::module;
 
 sub import {
     my $class = shift;
+    my $noreq = $_[0] eq '-norequire' ? shift : 0;
     my $orig  = shift;
 
     my $caller = caller();
 
-    (my $orig_pm = "$orig.pm") =~ s!::!/!g;
-    require $orig_pm;
+    unless ($noreq) {
+        (my $orig_pm = "$orig.pm") =~ s!::!/!g;
+        require $orig_pm;
+    }
     *{$caller . "::"} = \*{$orig . "::"};
 }
 
@@ -22,6 +25,10 @@ sub import {
 
  package Your::Alias::Name;
  use alias::module 'Some::Real::Module::Name';
+
+To avoid require()-ing:
+
+ use alias::module '-norequire', 'Some::Real::Module::Name';
 
 
 =head1 DESCRIPTION
