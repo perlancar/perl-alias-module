@@ -2,3 +2,4 @@ alias-module-*
 .build
 *~
 nytprof*
+.DS_Store
